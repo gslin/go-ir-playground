@@ -21,6 +21,10 @@ func Bigram(s string) []string {
 	return r
 }
 
+func Unigram(s string) []string {
+	return split(s)
+}
+
 func split(s string) []string {
 	bag := make([]string, 0)
 	for _, w := range re1.FindAllStringSubmatch(s, -1) {
