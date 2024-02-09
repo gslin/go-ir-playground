@@ -4,11 +4,10 @@ import (
 	"regexp"
 )
 
-var re1, re2 *regexp.Regexp
+var re1 *regexp.Regexp
 
 func init() {
-	re1 = regexp.MustCompile("\\PL+")
-	re2 = regexp.MustCompile("")
+	re1 = regexp.MustCompile("(\\w+|\\p{L})")
 }
 
 func Bigram(s string) []string {
@@ -24,8 +23,8 @@ func Bigram(s string) []string {
 
 func split(s string) []string {
 	bag := make([]string, 0)
-	for _, w := range re1.Split(s, -1) {
-		bag = append(bag, re2.Split(w, -1)...)
+	for _, w := range re1.FindAllStringSubmatch(s, -1) {
+		bag = append(bag, w[0])
 	}
 	return bag
 }
