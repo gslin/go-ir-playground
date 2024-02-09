@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"os"
 	"strings"
 
 	"github.com/gslin/go-ir-playground/internal/artifact"
@@ -34,4 +36,16 @@ func main() {
 	}
 
 	fmt.Println("TF & DF Built")
+
+	q := os.Args[1:]
+
+	for _, article := range articles {
+		var score float64 = 0.0
+		for _, w := range q {
+			if tf[w] != nil {
+				score += float64(tf[w][article.Id]) * math.Log2(float64(len(articles) / df[w]))
+			}
+		}
+		fmt.Printf("Article %v: %v\n", article.Id, score)
+	}
 }
