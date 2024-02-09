@@ -21,12 +21,12 @@ func main() {
 		bag := tokenizer.Tokenize(str)
 		tokens[article.Id] = bag
 
-		// Init TF:
-		tf[article.Id] = make(map[string]int)
-
 		for _, w := range bag {
 			// Handle TF:
-			tf[article.Id][w] = strings.Count(str, w)
+			if _, ok := tf[w]; !ok {
+				tf[w] = make(map[string]int)
+			}
+			tf[w][article.Id] += strings.Count(str, w)
 
 			// Handle DF:
 			df[w] += 1
