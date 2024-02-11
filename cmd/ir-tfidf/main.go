@@ -47,6 +47,9 @@ func main() {
 				score += float64(tf[w][article.Id]) * math.Log2(float64(len(articles) / df[w]))
 			}
 		}
-		fmt.Printf("Article %v: %v\n", article.Id, score)
+
+		if score > 0 {
+			fmt.Printf("Article %v: %v\n", article.Id, score)
+		}
 	}
 }
