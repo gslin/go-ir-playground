@@ -18,7 +18,7 @@ func main() {
 	df := make(map[string]int)
 
 	for _, article := range articles {
-		str := article.Title + "\n" + article.Body
+		str := strings.ToLower(article.Title + "\n" + article.Body)
 
 		bag := tokenizer.Tokenize(str)
 		tokens[article.Id] = bag
@@ -37,11 +37,12 @@ func main() {
 
 	fmt.Println("TF & DF Built")
 
-	q := os.Args[1:]
+	q := strings.ToLower(os.Args[1])
+	q_tokens := tokenizer.Tokenize(q)
 
 	for _, article := range articles {
 		var score float64 = 0.0
-		for _, w := range q {
+		for _, w := range q_tokens {
 			if tf[w] != nil {
 				score += float64(tf[w][article.Id]) * math.Log2(float64(len(articles) / df[w]))
 			}
