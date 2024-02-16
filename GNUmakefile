@@ -1,6 +1,6 @@
 #
 .DEFAULT:	all
-.PHONY:		all clean
+.PHONY:		all clean test
 
 #
 DIST?=	dist/
@@ -18,3 +18,6 @@ dist/ir-tfidf:: cmd/ir-tfidf/* internal/**
 
 clean::
 	rm -rf "${DIST}"
+
+test::
+	go test ./...
