@@ -7,6 +7,16 @@ import (
 	"github.com/gslin/go-ir-playground/internal/ngram"
 )
 
+func testBigram(t *testing.T) {
+	a := ngram.Bigram("test")
+	assert.Equal(t, len(a), 1)
+	assert.Equal(t, a[0], "test")
+
+	a = ngram.Bigram("測試")
+	assert.Equal(t, len(a), 1)
+	assert.Equal(t, a[0], "測試")
+}
+
 func TestUnigram(t *testing.T) {
 	a := ngram.Unigram("test")
 	assert.Equal(t, len(a), 1)
