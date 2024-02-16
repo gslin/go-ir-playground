@@ -2,18 +2,18 @@ package ngram_test
 
 import (
 	"testing"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/gslin/go-ir-playground/internal/ngram"
 )
 
 func TestUnigram(t *testing.T) {
 	a := ngram.Unigram("test")
-	if len(a) != 1 || a[0] != "test" {
-		t.Error()
-	}
+	assert.Equal(t, len(a), 1)
+	assert.Equal(t, a[0], "test")
 
 	a = ngram.Unigram("測試")
-	if len(a) != 2 || a[0] != "測" || a[1] != "試" {
-		t.Error()
-	}
+	assert.Equal(t, len(a), 2)
+	assert.Equal(t, a[0], "測")
+	assert.Equal(t, a[1], "試")
 }
