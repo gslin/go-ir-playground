@@ -11,6 +11,11 @@ import (
 )
 
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Printf("You need to specify a keyword to search.\n")
+		os.Exit(1)
+	}
+
 	articles := artifact.Read("data/articles.json")
 
 	tokens := make(map[string][]string)
