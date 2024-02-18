@@ -49,7 +49,7 @@ func main() {
 		}
 
 		if score > 0 {
-			fmt.Printf("Article %v: %v\n", article.Id, score)
+			fmt.Printf("Article %v (https://blog.gslin.org/?p=%v): %v\n", article.Id, article.Id, score)
 		}
 	}
 }
