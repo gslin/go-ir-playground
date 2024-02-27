@@ -42,6 +42,7 @@ func main() {
 
 	fmt.Println("TF & DF Built")
 
+	n := len(articles)
 	q := strings.ToLower(os.Args[1])
 	q_tokens := tokenizer.Tokenize(q)
 
@@ -49,7 +50,7 @@ func main() {
 		var score float64 = 0.0
 		for _, w := range q_tokens {
 			if tf[w] != nil {
-				score += float64(tf[w][article.Id]) * math.Log2(float64(len(articles) / df[w]))
+				score += float64(tf[w][article.Id]) * math.Log2(float64(n / df[w]))
 			}
 		}
 
