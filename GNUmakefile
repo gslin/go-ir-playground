@@ -7,7 +7,7 @@ DIST?=	dist/
 GO?=	go
 
 #
-all:: dist/ir-bm25 dist/ir-tfidf
+all:: dist/ir-bm25 dist/ir-tfidf dist/news-cna
 	@true
 
 dist/%:: cmd/%/* internal/**
