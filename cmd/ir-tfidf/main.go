@@ -23,17 +23,18 @@ func main() {
 	df := make(map[string]int)
 
 	for _, article := range articles {
+		id := article.Id
 		str := strings.ToLower(article.Title + "\n" + article.Body)
 
 		bag := tokenizer.Tokenize(str)
-		tokens[article.Id] = bag
+		tokens[id] = bag
 
 		for _, w := range bag {
 			// Handle TF:
 			if _, ok := tf[w]; !ok {
 				tf[w] = make(map[string]int)
 			}
-			tf[w][article.Id] += strings.Count(str, w)
+			tf[w][id] += strings.Count(str, w)
 
 			// Handle DF:
 			df[w] += 1
